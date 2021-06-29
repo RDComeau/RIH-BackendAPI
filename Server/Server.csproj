@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repos\" />
-    <Folder Include="Services\" />
+    <Folder Include="Repos\VersionOne\" />
   </ItemGroup>
 
 

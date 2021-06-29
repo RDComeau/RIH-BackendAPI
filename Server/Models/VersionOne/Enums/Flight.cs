@@ -7,6 +7,6 @@ namespace Server.Models.Enums
 {
     public class Flight
     {
-        public enum Fly { No, Yes}
+        public enum CanFly { No, Yes}
     }
 }

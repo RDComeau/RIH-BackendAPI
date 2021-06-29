@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Server.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models
+namespace Server.Models.VersionOne
 {
     public abstract class BaseUnit
     {
@@ -12,6 +13,5 @@ namespace Server.Models
         abstract public int life { get; set; }
         abstract public int combat { get; set; }
         abstract public bool fly { get; set; }
-        public enum Fly { No, Yes }
     }
 }

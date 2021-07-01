@@ -1,5 +1,5 @@
 ﻿using Server.Models.VersionOne;
-using Server.Models.VersionOne.Devout;
+using Server.Models.VersionOne.Devouts;
 using Server.Models.VersionOne.Leaders;
 using Server.Models.VersionOne.Minions.GreaterDemons;
 using Server.Models.VersionOne.Minions.LesserDemons;
@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace Server.Services.VersionOne.Interfaces
 {
-    public interface IUnitsInformationService
+    public interface IUnitsInformationServiceV1
     {
         public Warrior GetWarriorInformation();
         public Schemer GetSchemerInformation();
         public Zealot GetZealotInformation();
         public List<BaseUnit> GetAllLeadersInformation();
         public LordOfThePit GetLordOfThePitInformation();
-        public Executioner GetExecutionerInformatioin();
+        public Executioner GetExecutionerInformation();
         public MadnessDemon GetMadnessDemonInformation();
         public Tallyman GetTallymanInformation();
         public Succubus GetSuccubusInformation();

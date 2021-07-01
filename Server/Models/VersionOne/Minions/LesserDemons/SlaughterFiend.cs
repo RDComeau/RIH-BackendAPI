@@ -13,5 +13,7 @@ namespace Server.Models.VersionOne.Minions.LesserDemons
         public override int life { get; set; } = 10;
         public override int combat { get; set; } = 6;
         public override bool fly { get; set; } = Convert.ToBoolean(CanFly.No);
+        public override string demonName { get; set; } = "Slaughter Fiend";
+        public override string className { get; set; } = "Minions: Lesser Demons";
     }
 }

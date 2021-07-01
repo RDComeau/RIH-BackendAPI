@@ -1,5 +1,5 @@
 ﻿using Server.Models.VersionOne;
-using Server.Models.VersionOne.Devout;
+using Server.Models.VersionOne.Devouts;
 using Server.Models.VersionOne.Leaders;
 using Server.Models.VersionOne.Minions.GreaterDemons;
 using Server.Models.VersionOne.Minions.LesserDemons;
@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace Server.Services.VersionOne
 {
-    public class UnitsInformationService : IUnitsInformationService
+    public class UnitsInformationServiceV1 : IUnitsInformationServiceV1
     {
-        public UnitsInformationService()
+        public UnitsInformationServiceV1()
         {
 
         }
@@ -52,7 +52,7 @@ namespace Server.Services.VersionOne
             return new LordOfThePit();
         }
 
-        public Executioner GetExecutionerInformatioin()
+        public Executioner GetExecutionerInformation()
         {
             return new Executioner();
         }
@@ -82,7 +82,7 @@ namespace Server.Services.VersionOne
             return new List<BaseUnit>()
             {
                 GetLordOfThePitInformation(),
-                GetExecutionerInformatioin(),
+                GetExecutionerInformation(),
                 GetMadnessDemonInformation(),
                 GetTallymanInformation(),
                 GetSuccubusInformation(),

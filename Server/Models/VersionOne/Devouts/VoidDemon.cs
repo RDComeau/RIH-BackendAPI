@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using static Server.Models.Enums.Flight;
 
-namespace Server.Models.VersionOne.Devout
+namespace Server.Models.VersionOne.Devouts
 {
     public class VoidDemon : BaseUnit
     {
@@ -13,5 +13,7 @@ namespace Server.Models.VersionOne.Devout
         public override int life { get; set; } = 10;
         public override int combat { get; set; } = 7;
         public override bool fly { get; set; } = Convert.ToBoolean(CanFly.No);
+        public override string demonName { get; set; } = "Void Demon";
+        public override string className { get; set; } = "Devouts";
     }
 }

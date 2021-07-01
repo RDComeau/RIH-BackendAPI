@@ -13,5 +13,7 @@ namespace Server.Models.VersionOne.Minions.GreaterDemons
         public override int life { get; set; } = 11;
         public override int combat { get; set; } = 7;
         public override bool fly { get; set; } = Convert.ToBoolean(CanFly.No);
+        public override string demonName { get; set; } = "Serpent Knight";
+        public override string className { get; set; } = "Minions: Greater Demons";
     }
 }

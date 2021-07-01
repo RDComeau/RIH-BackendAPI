@@ -13,5 +13,7 @@ namespace Server.Models.VersionOne.Leaders
         public override int life { get; set; } = 0;
         public override int combat { get; set; } = 0;
         public override bool fly { get; set; } = Convert.ToBoolean(CanFly.No);
+        public override string demonName { get; set; }
+        public override string className { get; set; } = "Leaders";
     }
 }

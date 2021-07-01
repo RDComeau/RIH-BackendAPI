@@ -1,7 +1,7 @@
 ﻿using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 using Server.Models.VersionOne;
-using Server.Models.VersionOne.Devout;
+using Server.Models.VersionOne.Devouts;
 using Server.Models.VersionOne.Leaders;
 using Server.Models.VersionOne.Minions.GreaterDemons;
 using Server.Models.VersionOne.Minions.LesserDemons;
@@ -20,14 +20,15 @@ namespace Server.Test.Services.VersionOne
     [TestFixture]
     public class UnitsInformationServiceTest
     {
-        private IUnitsInformationService _unitsInformationService;
+        private IUnitsInformationServiceV1 _unitsInformationService;
 
         [SetUp]
         public void setup()
         {
-            _unitsInformationService = new UnitsInformationService();
+            _unitsInformationService = new UnitsInformationServiceV1();
         }
 
+        #region Leaders
         [Test]
         public void GetWarriorInformation_ShouldReturnWarriorInformation_WhenInvoked()
         {
@@ -38,7 +39,9 @@ namespace Server.Test.Services.VersionOne
                 move = 6,
                 life = 15,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Leaders",
+                demonName = "Warrior"
             };
 
             //Act
@@ -60,7 +63,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 11,
                 combat = 5,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Leaders",
+                demonName = "Schemer"
             };
 
             //Act
@@ -82,7 +87,9 @@ namespace Server.Test.Services.VersionOne
                 move = 7,
                 life = 13,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Leaders",
+                demonName = "Zealot"
             };
 
             //Act
@@ -104,7 +111,9 @@ namespace Server.Test.Services.VersionOne
                 move = 6,
                 life = 15,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Leaders",
+                demonName = "Warrior"
             };
 
             Schemer schemer = new Schemer()
@@ -113,7 +122,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 11,
                 combat = 5,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Leaders",
+                demonName = "Schemer"
             };
 
             Zealot zealot = new Zealot()
@@ -122,7 +133,9 @@ namespace Server.Test.Services.VersionOne
                 move = 7,
                 life = 13,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Leaders",
+                demonName = "Zealot"
             };
 
             List<BaseUnit> expectedUnits = new List<BaseUnit>()
@@ -140,7 +153,9 @@ namespace Server.Test.Services.VersionOne
             ComparisonResult compareResult = compare.Compare(expectedUnits, actualUnits);
             Assert.IsTrue(compareResult.AreEqual, compareResult.DifferencesString);
         }
+        #endregion
 
+        #region Devouts
         [Test]
         public void GetLordOfThePitInformation_ShouldReturnLordOfThePitInformation_WhenInvoked()
         {
@@ -151,7 +166,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 12,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Devouts",
+                demonName = "Lord Of The Pit"
             };
 
             //Act
@@ -173,11 +190,13 @@ namespace Server.Test.Services.VersionOne
                 move = 5,
                 life = 12,
                 combat = 8,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Devouts",
+                demonName = "Executioner"
             };
 
             //Act
-            Executioner actualUnit = _unitsInformationService.GetExecutionerInformatioin();
+            Executioner actualUnit = _unitsInformationService.GetExecutionerInformation();
 
             //Assert
             CompareLogic compare = new CompareLogic();
@@ -195,7 +214,9 @@ namespace Server.Test.Services.VersionOne
                 move = 5,
                 life = 11,
                 combat = 3,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Devouts",
+                demonName = "Madness Demon"
             };
 
             //Act
@@ -217,7 +238,9 @@ namespace Server.Test.Services.VersionOne
                 move = 4,
                 life = 11,
                 combat = 5,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Devouts",
+                demonName = "Tallyman"
             };
 
             //Act
@@ -239,7 +262,9 @@ namespace Server.Test.Services.VersionOne
                 move = 6,
                 life = 9,
                 combat = 4,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Devouts",
+                demonName = "Succubus"
             };
 
             //Act
@@ -261,7 +286,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 10,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Devouts",
+                demonName = "Void Demon"
             };
 
             //Act
@@ -283,7 +310,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 12,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Devouts",
+                demonName = "Lord Of The Pit"
             };
 
             Executioner executioner = new Executioner()
@@ -292,7 +321,9 @@ namespace Server.Test.Services.VersionOne
                 move = 5,
                 life = 12,
                 combat = 8,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Devouts",
+                demonName = "Executioner"
             };
 
             MadnessDemon madnessDemon = new MadnessDemon()
@@ -301,7 +332,9 @@ namespace Server.Test.Services.VersionOne
                 move = 5,
                 life = 11,
                 combat = 3,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Devouts",
+                demonName = "Madness Demon"
             };
 
             Tallyman tallyman = new Tallyman()
@@ -310,7 +343,9 @@ namespace Server.Test.Services.VersionOne
                 move = 4,
                 life = 11,
                 combat = 5,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Devouts",
+                demonName = "Tallyman"
             };
 
             Succubus succubus = new Succubus()
@@ -319,7 +354,9 @@ namespace Server.Test.Services.VersionOne
                 move = 6,
                 life = 9,
                 combat = 4,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Devouts",
+                demonName = "Succubus"
             };
 
             VoidDemon voidDemon = new VoidDemon()
@@ -328,7 +365,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 10,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Devouts",
+                demonName = "Void Demon"
             };
 
             List<BaseUnit> expectedUnits = new List<BaseUnit>()
@@ -349,7 +388,9 @@ namespace Server.Test.Services.VersionOne
             ComparisonResult compareResult = compare.Compare(expectedUnits, actualUnits);
             Assert.IsTrue(compareResult.AreEqual, compareResult.DifferencesString);
         }
+        #endregion
 
+        #region Minions: Lesser Demons
         [Test]
         public void GetSlaughterFiendInformation_ShouldReturnSlaughterFiendInformation_WhenInvoked()
         {
@@ -360,7 +401,9 @@ namespace Server.Test.Services.VersionOne
                 move = 5,
                 life = 10,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Slaughter Fiend"
             };
 
             //Act
@@ -382,7 +425,9 @@ namespace Server.Test.Services.VersionOne
                 move = 9,
                 life = 7,
                 combat = 3,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Minions: Lesser Demons",
+                demonName = "Mephit"
             };
 
             //Act
@@ -404,7 +449,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 9,
                 combat = 4,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Tentacle Beast"
             };
 
             //Act
@@ -426,7 +473,9 @@ namespace Server.Test.Services.VersionOne
                 move = 4,
                 life = 13,
                 combat = 5,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Armored Demon"
             };
 
             //Act
@@ -448,7 +497,9 @@ namespace Server.Test.Services.VersionOne
                 move = 6,
                 life = 7,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Spined Demon"
             };
 
             //Act
@@ -470,7 +521,9 @@ namespace Server.Test.Services.VersionOne
                 move = 4,
                 life = 15,
                 combat = 4,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Corpulent Demon"
             };
 
             //Act
@@ -492,7 +545,9 @@ namespace Server.Test.Services.VersionOne
                 move = 5,
                 life = 10,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Slaughter Fiend"
             };
 
             Mephit mephit = new Mephit()
@@ -501,7 +556,9 @@ namespace Server.Test.Services.VersionOne
                 move = 9,
                 life = 7,
                 combat = 3,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Minions: Lesser Demons",
+                demonName = "Mephit"
             };
 
             TentacleBeast tentacleBeast = new TentacleBeast()
@@ -510,7 +567,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 9,
                 combat = 4,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Tentacle Beast"
             };
 
             ArmoredDemon armoredDemon = new ArmoredDemon()
@@ -519,7 +578,9 @@ namespace Server.Test.Services.VersionOne
                 move = 4,
                 life = 13,
                 combat = 5,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Armored Demon"
             };
 
             SpinedDemon spinedDemon = new SpinedDemon()
@@ -528,7 +589,9 @@ namespace Server.Test.Services.VersionOne
                 move = 6,
                 life = 7,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Spined Demon"
             };
 
             CorpulentDemon corpulentDemon = new CorpulentDemon()
@@ -537,7 +600,9 @@ namespace Server.Test.Services.VersionOne
                 move = 4,
                 life = 15,
                 combat = 4,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Lesser Demons",
+                demonName = "Corpulent Demon"
             };
 
             List<BaseUnit> expectedUnits = new List<BaseUnit>()
@@ -558,7 +623,9 @@ namespace Server.Test.Services.VersionOne
             ComparisonResult compareResult = compare.Compare(expectedUnits, actualUnits);
             Assert.IsTrue(compareResult.AreEqual, compareResult.DifferencesString);
         }
+        #endregion
 
+        #region Minions: Greater Demons
         [Test]
         public void GetTortureMasterInformation_ShouldReturnTortureMasterInformation_WhenInvoked()
         {
@@ -569,7 +636,9 @@ namespace Server.Test.Services.VersionOne
                 move = 6,
                 life = 10,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Greater Demons",
+                demonName = "Torture Master"
             };
 
             //Act
@@ -591,7 +660,9 @@ namespace Server.Test.Services.VersionOne
                 move = 7,
                 life = 11,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Greater Demons",
+                demonName = "Serpent Knight"
             };
 
             //Act
@@ -613,7 +684,9 @@ namespace Server.Test.Services.VersionOne
                 move = 4,
                 life = 11,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Greater Demons",
+                demonName = "Marquess d'Winter"
             };
 
             //Act
@@ -635,7 +708,9 @@ namespace Server.Test.Services.VersionOne
                 move = 6,
                 life = 10,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Greater Demons",
+                demonName = "Torture Master"
             };
 
             SerpentKnight serpentKnight = new SerpentKnight()
@@ -644,7 +719,9 @@ namespace Server.Test.Services.VersionOne
                 move = 7,
                 life = 11,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Greater Demons",
+                demonName = "Serpent Knight"
             };
 
             MarquessDWinter marquessDWinter = new MarquessDWinter()
@@ -653,7 +730,9 @@ namespace Server.Test.Services.VersionOne
                 move = 4,
                 life = 11,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Greater Demons",
+                demonName = "Marquess d'Winter"
             };
 
             List<BaseUnit> expectedUnits = new List<BaseUnit>()
@@ -671,7 +750,9 @@ namespace Server.Test.Services.VersionOne
             ComparisonResult compareResult = compare.Compare(expectedUnits, actualUnits);
             Assert.IsTrue(compareResult.AreEqual, compareResult.DifferencesString);
         }
+        #endregion
 
+        #region Minions: Superior Demons
         [Test]
         public void GetShadowKingInformation_ShouldReturnShadowKingInformation_WhenInvoked()
         {
@@ -682,7 +763,9 @@ namespace Server.Test.Services.VersionOne
                 move = 7,
                 life = 10,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Minions: Superior Demons",
+                demonName = "Shadow King"
             };
 
             //Act
@@ -704,7 +787,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 11,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Minions: Superior Demons",
+                demonName = "Lord Of Flame"
             };
 
             //Act
@@ -726,7 +811,9 @@ namespace Server.Test.Services.VersionOne
                 move = 5,
                 life = 13,
                 combat = 5,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Superior Demons",
+                demonName = "Venom Queen"
             };
 
             //Act
@@ -748,7 +835,9 @@ namespace Server.Test.Services.VersionOne
                 move = 7,
                 life = 10,
                 combat = 6,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Minions: Superior Demons",
+                demonName = "Shadow King"
             };
 
             LordOfFlame lordOfFlame = new LordOfFlame()
@@ -757,7 +846,9 @@ namespace Server.Test.Services.VersionOne
                 move = 8,
                 life = 11,
                 combat = 7,
-                fly = Convert.ToBoolean(CanFly.Yes)
+                fly = Convert.ToBoolean(CanFly.Yes),
+                className = "Minions: Superior Demons",
+                demonName = "Lord Of Flame"
             };
 
             VenomQueen venomQueen = new VenomQueen()
@@ -766,7 +857,9 @@ namespace Server.Test.Services.VersionOne
                 move = 5,
                 life = 13,
                 combat = 5,
-                fly = Convert.ToBoolean(CanFly.No)
+                fly = Convert.ToBoolean(CanFly.No),
+                className = "Minions: Superior Demons",
+                demonName = "Venom Queen"
             };
 
             List<BaseUnit> expectedUnits = new List<BaseUnit>()
@@ -784,7 +877,9 @@ namespace Server.Test.Services.VersionOne
             ComparisonResult compareResult = compare.Compare(expectedUnits, actualUnits);
             Assert.IsTrue(compareResult.AreEqual, compareResult.DifferencesString);
         }
+        #endregion
 
+        #region All Units
         [Test]
         public void GetAllUnitsInformation_ShouldReturnAllUnitsInformation_WhenInvoked()
         {
@@ -1011,5 +1106,6 @@ namespace Server.Test.Services.VersionOne
             ComparisonResult compareResult = compare.Compare(expectedUnits, actualUnits);
             Assert.IsTrue(compareResult.AreEqual, compareResult.DifferencesString);
         }
+        #endregion
     }
 }

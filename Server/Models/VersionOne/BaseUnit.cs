@@ -13,5 +13,7 @@ namespace Server.Models.VersionOne
         abstract public int life { get; set; }
         abstract public int combat { get; set; }
         abstract public bool fly { get; set; }
+        abstract public string demonName { get; set; }
+        abstract public string className { get; set;}
     }
 }

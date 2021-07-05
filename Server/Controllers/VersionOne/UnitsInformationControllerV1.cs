@@ -46,7 +46,7 @@ namespace Server.Controllers.VersionOne
             return StatusCode(200, _service.GetZealotInformation());
         }
 
-        [HttpGet("leader")]
+        [HttpGet("leaders")]
         public ActionResult<List<BaseUnit>> GetAllLeadersInformation()
         {
             return StatusCode(200, _service.GetAllLeadersInformation());

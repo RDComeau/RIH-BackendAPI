@@ -1,13 +1,13 @@
 ﻿using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
-using Server.Models.VersionOne;
-using Server.Models.VersionOne.Devouts;
-using Server.Models.VersionOne.Leaders;
-using Server.Models.VersionOne.Minions.GreaterDemons;
-using Server.Models.VersionOne.Minions.LesserDemons;
-using Server.Models.VersionOne.Minions.SuperiorDemons;
-using Server.Services.VersionOne;
-using Server.Services.VersionOne.Interfaces;
+using RIHGameLogic.Models.VersionOne;
+using RIHGameLogic.Models.VersionOne.Devouts;
+using RIHGameLogic.Models.VersionOne.Leaders;
+using RIHGameLogic.Models.VersionOne.Minions.GreaterDemons;
+using RIHGameLogic.Models.VersionOne.Minions.LesserDemons;
+using RIHGameLogic.Models.VersionOne.Minions.SuperiorDemons;
+using RIHGameLogic.Services.VersionOne;
+using RIHGameLogic.Services.VersionOne.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace Server.Test.Services.VersionOne
         [SetUp]
         public void setup()
         {
-            _unitsInformationService = new UnitsInformationServiceV1();
+           
         }
 
         #region Leaders

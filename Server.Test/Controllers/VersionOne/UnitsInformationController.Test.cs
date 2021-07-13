@@ -3,18 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
 using Server.Controllers.VersionOne;
-using Server.Models.VersionOne;
-using Server.Models.VersionOne.Devouts;
-using Server.Models.VersionOne.Leaders;
-using Server.Models.VersionOne.Minions.GreaterDemons;
-using Server.Models.VersionOne.Minions.LesserDemons;
-using Server.Models.VersionOne.Minions.SuperiorDemons;
-using Server.Services.VersionOne.Interfaces;
+using RIH_GameLogic.Models.VersionOne;
+using RIH_GameLogic.Models.VersionOne.Devouts;
+using RIH_GameLogic.Models.VersionOne.Leaders;
+using RIH_GameLogic.Models.VersionOne.Minions.GreaterDemons;
+using RIH_GameLogic.Models.VersionOne.Minions.LesserDemons;
+using RIH_GameLogic.Models.VersionOne.Minions.SuperiorDemons;
+using RIH_GameLogic.Services.VersionOne.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RIH_GameLogic.Services.VersionOne;
 
 namespace Server.Test.Controllers.VersionOne
 {
@@ -733,10 +734,10 @@ namespace Server.Test.Controllers.VersionOne
                 new VenomQueen()
             };
 
-            _service.Setup(x => x.GetAllSuperiorDemons())
+            _service.Setup(x => x.GetAllSuperiorDemonsInformation())
                 .Callback(() =>
                 {
-                    _service.Verify(x => x.GetAllSuperiorDemons(), Times.Once);
+                    _service.Verify(x => x.GetAllSuperiorDemonsInformation(), Times.Once);
                 })
                 .Returns(allSuperiorDemonsInformation);
 

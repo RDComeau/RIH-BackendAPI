@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Server.Models.VersionOne;
-using Server.Models.VersionOne.Devouts;
-using Server.Models.VersionOne.Leaders;
-using Server.Models.VersionOne.Minions.GreaterDemons;
-using Server.Models.VersionOne.Minions.LesserDemons;
-using Server.Models.VersionOne.Minions.SuperiorDemons;
-using Server.Services.VersionOne;
-using Server.Services.VersionOne.Interfaces;
+using RIH_GameLogic.Models.VersionOne.Leaders;
+using RIH_GameLogic.Models.VersionOne.Minions.GreaterDemons;
+using RIH_GameLogic.Models.VersionOne.Minions.LesserDemons;
+using RIH_GameLogic.Models.VersionOne.Minions.SuperiorDemons;
+using RIH_GameLogic.Services.VersionOne.Interfaces;
+using RIH_GameLogic.Models.VersionOne;
+using RIH_GameLogic.Models.VersionOne.Devouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -189,7 +188,7 @@ namespace Server.Controllers.VersionOne
         [HttpGet("minions/superiordemons")]
         public ActionResult<List<BaseUnit>> GetAllSuperiorDemons()
         {
-            return StatusCode(200, _service.GetAllSuperiorDemons());
+            return StatusCode(200, _service.GetAllSuperiorDemonsInformation());
         }
         #endregion
 

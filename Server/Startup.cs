@@ -8,8 +8,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 //using Server.Services.VersionOne;
 //using Server.Services.VersionOne.Interfaces;
-using RIHGameLogic.Services.VersionOne.Interfaces;
-using RIHGameLogic.Services.VersionOne;
+using RIH_GameLogic.Services.VersionOne.Interfaces;
+using RIH_GameLogic.Services.VersionOne;
+using RIH_GameLogic.Brokers.VersionOne;
+using RIH_GameLogic.Brokers.VersionOne.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +32,7 @@ namespace Server
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddSingleton<IUnitsInformationServiceV1, UnitsInformationServiceV1>();
-            services.AddSingleton<UnitsInformationServiceV1>();
+            services.AddSingleton<IUnitsInformationServiceV1, UnitsInformationServiceV1>();
 
             services.AddControllers();
         }

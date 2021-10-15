@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace Server.Controllers.VersionOne
 {
+    [Produces("application/json")]
     [Route("api/v1/unitsinformation")]
     [ApiController]
     public class UnitsInformationControllerV1 : Controller
@@ -27,7 +28,13 @@ namespace Server.Controllers.VersionOne
         }
 
         #region Leaders
+        /// <summary>
+        /// Warrior Information
+        /// </summary>
+        /// <returns>Warrior Json Information</returns>
+        /// <response code="200">Returns Warrior Info in Json Format</response>
         [HttpGet("leaders/warrior")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<Warrior> GetWarriorInformation()
         {
             return StatusCode(200, _service.GetWarriorInformation());

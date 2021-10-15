@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RIH_GameLogic.Brokers.VersionOne.Interfaces;
 using RIH_GameLogic.Models.VersionOne;
+using RIH_GameLogic.Services.VersionOne.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +13,11 @@ namespace Server.Controllers.VersionOne
     [ApiController]
     public class CabalControllerV1 : Controller
     {
-        ICabalBrokerV1 _broker;
+        ICabalServiceV1 _service;
 
-        public CabalControllerV1(ICabalBrokerV1 broker)
+        public CabalControllerV1(ICabalServiceV1 service)
         {
-            _broker = broker;
+            _service = service;
         }
 
         [HttpPost("gamesession/{id:int}")]

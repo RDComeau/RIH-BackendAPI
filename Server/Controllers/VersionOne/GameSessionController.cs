@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RIH_GameLogic.Brokers.VersionOne.Interfaces;
 using RIH_GameLogic.Models.VersionOne;
 using RIH_GameLogic.Models.VersionOne.Requests;
+using RIH_GameLogic.Services.VersionOne.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static RIH_GameLogic.Models.VersionOne.Enums.Rules;
 
 namespace Server.Controllers.VersionOne
 {
@@ -14,11 +15,11 @@ namespace Server.Controllers.VersionOne
     [ApiController]
     public class GameSessionController : Controller
     {
-        private IGameSessionBrokerV1 _broker;
+        private IGameSessionServiceV1 _service;
 
-        public GameSessionController(IGameSessionBrokerV1 broker)
+        public GameSessionController(IGameSessionServiceV1 service)
         {
-            _broker = broker;
+            _service = service;
         }
 
         [HttpPost("newgame")]
@@ -26,7 +27,16 @@ namespace Server.Controllers.VersionOne
         {
             try
             {
-                GameSession session = _broker.NewGameSession(createSession);
+                GameSession session;
+
+                if (createSession.defaultRules == Convert.ToBoolean(DefualtRules.No))
+                {
+                    session = _service.CreateNewUniqueSession(createSession);
+                }
+                else
+                {
+                    session = _service.CreateNewDefualtSession(createSession);
+                }
 
                 return StatusCode(201, session);
             }
@@ -41,9 +51,9 @@ namespace Server.Controllers.VersionOne
         {
             try
             {
-                GameSession session = _broker.SelectGameSession(id);
+                GameSession session = _service.SelectGame(id);
 
-                if(session == null)
+                if (session == null)
                 {
                     return StatusCode(404, "Resources Not Found");
                 }
@@ -63,7 +73,7 @@ namespace Server.Controllers.VersionOne
         {
             try
             {
-                GameSession session = _broker.SelectGameSession(id, creatorCabalId);
+                GameSession session = _service.SelectGame(id, creatorCabalId);
 
                 if (session == null)
                 {
@@ -85,7 +95,7 @@ namespace Server.Controllers.VersionOne
         {
             try
             {
-                GameSession session = _broker.SelectGameSession(id, creatorCabalId, acceptorCabalId);
+                GameSession session = _service.SelectGame(id, creatorCabalId, acceptorCabalId);
 
                 if (session == null)
                 {
@@ -113,7 +123,7 @@ namespace Server.Controllers.VersionOne
         {
             try
             {
-                GameSession session = _broker.AcceptGame(accepctSession);
+                GameSession session = _service.AcceptGame(accepctSession);
 
                 return StatusCode(200, session);
             }
@@ -128,7 +138,7 @@ namespace Server.Controllers.VersionOne
         {
             try
             {
-                _broker.DeleteGameSession(deleteGame);
+                _service.DeleteGame(deleteGame);
 
                 return StatusCode(204);
             }

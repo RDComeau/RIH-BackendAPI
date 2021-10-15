@@ -8,8 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RIH_GameLogic.Services.VersionOne.Interfaces;
 using RIH_GameLogic.Services.VersionOne;
-using RIH_GameLogic.Brokers.VersionOne;
-using RIH_GameLogic.Brokers.VersionOne.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,18 +32,15 @@ namespace Server
         public void ConfigureServices(IServiceCollection services)
         {
             //Game Session
-            services.AddSingleton<IGameSessionBrokerV1, GameSessionBrokerV1>();
             services.AddSingleton<IGameSessionServiceV1, GameSessionServiceV1>();
             services.AddSingleton<IGameSessionRepoV1, GameSessionRepoV1>();
             //Cabal
-            services.AddSingleton<ICabalBrokerV1, CabalBrokerV1>();
             services.AddSingleton<ICabalServiceV1, CabalServiceV1>();
             services.AddSingleton<ICabalRepoV1, CabalRepoV1>();
             //Units Information
-            services.AddSingleton<IUnitsInformationBrokerV1, UnitsInformationBrokerV1>();
             services.AddSingleton<IUnitsInformationServiceV1, UnitsInformationServiceV1>();
             //Helpers
-            services.AddSingleton<ISqlCommands, SqlCommands>();
+            services.AddSingleton<IConfigHelper, ConfigHelper>();
 
             services.AddControllers();
         }

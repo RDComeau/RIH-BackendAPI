@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RIH_GameLogic.Models.VersionOne;
+using RIH_GameLogic.Models.VersionOne.Requests;
 using RIH_GameLogic.Services.VersionOne.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,15 +21,31 @@ namespace Server.Controllers.VersionOne
             _service = service;
         }
 
-        [HttpPost("gamesession/{id:int}")]
-        public ActionResult<Cabal> CreateCabal(int id)
+        /// <summary>
+        /// Create Cabal
+        /// </summary>
+        /// <returns>Returns Information on Cabal</returns>
+        /// <response code="201">New Cabal Created</response>
+        /// <response code="500">Error in Creating Cabal</response>
+        [HttpPost()]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<Cabal> CreateCabal(CabalAddRequests cabalAddRequests)
         {
+            Cabal cabal = _service.CreateCabal(cabalAddRequests);
             try
             {
-                throw new NotImplementedException();
-                //return StatusCode(201, _broker.);
+                if (cabal == null)
+                {
+                    return StatusCode(201, cabal);
+                }
+                else
+                {
+                    return StatusCode(409);
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

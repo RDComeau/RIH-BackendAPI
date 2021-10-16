@@ -24,12 +24,21 @@ namespace Server
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
-            Configuration = configuration;
+            var build = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            Configuration = build.Build();
+
+            this.environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -40,6 +49,7 @@ namespace Server
             //Cabal
             services.AddSingleton<ICabalServiceV1, CabalServiceV1>();
             services.AddSingleton<ICabalRepoV1, CabalRepoV1>();
+            services.AddSingleton<IDemonRepoV1, DemonRepoV1>();
             //Units Information
             services.AddSingleton<IUnitsInformationServiceV1, UnitsInformationServiceV1>();
             //Helpers
@@ -82,7 +92,6 @@ namespace Server
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "RIH API V1");
-                c.RoutePrefix = string.Empty;
             });
 
             app.UseHttpsRedirection();

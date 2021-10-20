@@ -28,7 +28,7 @@ namespace Server.Controllers.VersionOne
         /// <response code="201">New Cabal Created</response>
         /// <response code="500">Error in Creating Cabal</response>
         [HttpPost()]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<Cabal> CreateCabal(CabalAddRequests cabalAddRequests)
@@ -38,11 +38,11 @@ namespace Server.Controllers.VersionOne
             {
                 if (cabal == null)
                 {
-                    return StatusCode(201, cabal);
+                    return StatusCode(409);
                 }
                 else
                 {
-                    return StatusCode(409);
+                    return StatusCode(201, cabal);
                 }
             }
             catch (Exception ex)

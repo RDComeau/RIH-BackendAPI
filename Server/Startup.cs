@@ -19,6 +19,7 @@ using RIH_GameLogic.Helpers;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace Server
 {
@@ -49,13 +50,19 @@ namespace Server
             //Cabal
             services.AddSingleton<ICabalServiceV1, CabalServiceV1>();
             services.AddSingleton<ICabalRepoV1, CabalRepoV1>();
+            //Demon
             services.AddSingleton<IDemonRepoV1, DemonRepoV1>();
             //Units Information
             services.AddSingleton<IUnitsInformationServiceV1, UnitsInformationServiceV1>();
             //Helpers
             services.AddSingleton<IConfigHelper, ConfigHelper>();
+            //Game Types
+            services.AddSingleton<IGameTypesServiceV1, GameTypesServiceV1>();
+            services.AddSingleton<IGameTypeRepoV1, GameTypeRepoV1>();
+            //Restrictions
+            services.AddSingleton<IRestrictionRepoV1, RestrectionRepoV1>();
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
